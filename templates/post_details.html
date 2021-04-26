@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+
+{% block contents %}
+    <div>
+      <h1>{{ post.title }}</h1><br>
+        By &nbsp<i>{{ post.author }}</i> &nbsp &nbsp &nbsp  &nbsp {{ post.date_posted }}<br><br>
+        <p>
+            {{ post.body }}
+
+        </p>
+        <P>
+
+        </P>
+    </div>
+    <br>
+    <div>
+
+        {% if post.author == user %}
+            <a href="{% url 'post_edit_page' post.pk %}"> + Edit Post</a> &nbsp; &nbsp; &nbsp;
+            <a href="{% url 'post_delete_page' post.pk %}"> Delete Post </a>
+
+        {% endif %}
+    </div>
+    <br>
+    <div>
+
+
+
+{#    <b>COMMENT [ {{ cuser }}]</b>#}
+        <b>Conversations</b> &nbsp; &nbsp; {{ counter }} comments
+        <br><hr><br>
+     <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Post" name="txtSubmit">
+    </form>
+    </div>
+
+    <div>
+    <br>
+    <hr>
+
+        {% for pc in postComment %}
+            {% if pc.comment_title == post.title %}
+                <div class="comments">
+                    <b>{{ pc.author }}:</b><br>
+                    <i>{{ pc.comment_date }}</i><br>
+                    <i>{{ pc.comment }}</i>
+
+                </div>
+                <br>
+                <br>
+            {% endif %}
+        {% endfor %}
+
+    </div>
+
+{% endblock %}

@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+
+
+
+{% block contents %}
+
+    {% if object_list.count > 0 %}
+
+        <div class="row justify-content-center">
+          <p><h3> Welcome {{ user.username }}</h3></p>
+        </div>
+        <br>
+
+        {% for post in page_obj %}
+              <div class="comments">
+                <b><a href="{% url 'post_details_page' post.pk %}">{{ post.title | title}}</a></b><br>
+                <i>{{ post.body | truncatechars:100}}...<a href="{% url 'post_details_page' post.pk %}">read more</a> </i>
+    {#          <i class="in">  by {{ post.author }}</i>#}
+              </div>
+            <br>
+        {% endfor %}
+        <br>
+        <br>
+
+    <div class="pagination">
+        <span class="step-links">
+            {% if page_obj.has_previous %}
+                <a href="?page=1">&laquo; first</a>
+                <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+            {% endif %}
+
+            <span class="current">
+                Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+            </span>
+
+            {% if page_obj.has_next %}
+                <a href="?page={{ page_obj.next_page_number }}">next</a>
+                <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+            {% endif %}
+        </span>
+    </div>
+    {% else %}
+        <p> No Blog yet. Click <a href="{% url 'post_new_page' %}">here</a> to create a new blog</p>
+    {% endif %}
+
+{#    <hr>#}
+{#    <hr>#}
+{#    <p><h6>General Comment Section</h6></p>#}
+
+{% endblock %}
+
+
+{#{% block comments %}#}
+{#    <form method="post">#}
+{#        {% csrf_token %}#}
+{#        {{ form.as_p }}#}
+{#        <input type="submit" value="Post" name="txtSubmit">#}
+{#    </form>#}
+{##}
+{#    <hr>#}
+{#    <hr>#}
+{#    <hr>#}
+{#    <b><u>COMMENTS</u></b>#}
+{#    <br>#}
+{#    <br>#}
+{##}
+{#    {% for post in comment_list %}#}
+{#        <div class="comments">#}
+{#            <p><b>{{ post.author }}</b></p>#}
+{#            <p><i>{{ post.comment }}</i></p>#}
+{#        </div>#}
+{#    {% endfor %}#}
+{##}
+{##}
+{#{% endblock %}#}
