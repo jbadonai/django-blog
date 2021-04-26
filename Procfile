@@ -1,0 +1,1 @@
+web: gunicorn config2.wsgi
