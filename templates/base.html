@@ -38,17 +38,7 @@
 
     </div>
 
-    <div class="main">
-        <div >
-            {% block contents %}
-            {% endblock %}
-        </div>
-    </div>
 
-    <div class="main">
-        {% block comments %}
-        {% endblock %}
-    </div>
 
 {% else %}
     <div class="sidenav">
@@ -61,7 +51,7 @@
 
             <header>
                 <div class="nav-left">
-                    <h1>Django Blog - Jbadonai</h1>
+                    <h1>Django Blog</h1>
                 </div>
                 <div class="nav-right">
                     <a href="{% url 'register' %}">Register</a>
@@ -71,6 +61,7 @@
 
     </div>
 
+    {% block loggedout %}
     <div >
         <div class="row justify-content-center">
             {% block login %}
@@ -78,9 +69,20 @@
             {% endblock %}
         </div>
     </div>
+    {% endblock %}
 
 {% endif %}
+  <div class="main">
+        <div >
+            {% block contents %}
+            {% endblock %}
+        </div>
+    </div>
 
+    <div class="main">
+        {% block comments %}
+        {% endblock %}
+    </div>
 
 
 {#<div class="main">#}

@@ -8,11 +8,12 @@
             {{ post.body }}
 
         </p>
-        <P>
 
-        </P>
     </div>
     <br>
+
+
+    {% if user.is_authenticated  %}
     <div>
 
         {% if post.author == user %}
@@ -54,5 +55,6 @@
         {% endfor %}
 
     </div>
+    {% endif %}
 
 {% endblock %}
