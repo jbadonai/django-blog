@@ -21,9 +21,3 @@ https://jbadonai-django-blog-app.herokuapp.com/
 You can also download the repo from Git hub
 
 
-Where users can get help with your project
-------------------------------------------
-
-
-Who maintains and contributes to the project
----------------------------------------------
